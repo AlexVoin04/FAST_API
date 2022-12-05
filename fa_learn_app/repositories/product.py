@@ -16,6 +16,12 @@ class BaseProductRepository:
     def create(self, product :ProductIn) -> ProductOut:
         raise NotImplementedError
 
+    def update(self, id : uuid.UUID, product :ProductIn) -> ProductOut:
+        raise NotImplementedError
+
+    def delete(self, id :uuid.UUID) -> ProductOut:
+        raise NotImplementedError
+
 class ProductTmpRepository(BaseProductRepository):
     """Реализация продукта с временным хранилищем в объектк Dict"""
 
@@ -48,3 +54,16 @@ class ProductTmpRepository(BaseProductRepository):
         self._dict_products.update({product_storage.id: product_storage})
         product_out :ProductOut = convert_product_storage_to_out(product_storage)
         return product_out
+"""
+
+    def update(self, product :ProductIn) -> ProductOut:
+        return self
+
+    def delete(self, id :uuid.UUID) -> Optional[ProductOut]:
+        product :ProductStorage = self._dict_products.get(id, None)
+        if product is None:
+            return None
+        product_storage :ProductStorage = convert_product_in_to_storage(product)
+        self._dict_products.remove({product_storage.id: product_storage})
+        return product_out 
+"""
