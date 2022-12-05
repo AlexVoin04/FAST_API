@@ -29,3 +29,20 @@ async def create_product(
     product_repo :BaseProductRepository = Depends(get_product_repo),
     ):
     return product_repo.create(product_in)
+"""
+@router.put("/product", response_model = List[ProductOut])
+async def put_product(
+    id :uuid.UUID,
+    product_repo :BaseProductRepository = Depends(get_product_repo),
+    ):
+    product_put = product_repo.get_by_id(id)
+    return product_repo.update(product_put)
+
+@router.delete("/product", response_model = List[ProductOut])
+async def delete_product(
+    id :uuid.UUID,
+    product_repo :BaseProductRepository = Depends(get_product_repo),
+    ):
+    
+    return product_repo.get_by_id(id)
+"""
