@@ -3,7 +3,7 @@ import uuid
 from fa_learn_app.models.product import ProductStorage,ProductOut, ProductIn
 
 
-def convert_products_storage_to_out(product : ProductStorage) -> ProductOut:
+def convert_product_storage_to_out(product : ProductStorage) -> ProductOut:
     """Производит конвертацию ProductStorage --> ProductOut"""
 
     tmp_dict:dict = product.dict()
