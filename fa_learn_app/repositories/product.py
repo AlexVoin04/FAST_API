@@ -2,7 +2,7 @@ from typing import List, Dict, Optional
 import uuid
 from fa_learn_app.models.product import ProductIn, ProductOut, ProductStorage
 from fa_learn_app.utils.repository_utils import convert_product_storage_to_out, convert_product_in_to_storage, update_product_in_to_storage
-_
+
 
 class BaseProductRepository:
     """Базовый класс для реализации функционала работы с продуктами"""
@@ -69,10 +69,10 @@ class ProductTmpRepository(BaseProductRepository):
 
     def delete(self, id :uuid.UUID) -> str:
         """Удаление объекта по id"""
+        
         product :ProductStorage = self._dict_products.get(id, None)
         if product is None:
             return None
-        product_storage :ProductStorage = convert_product_in_to_storage(product)
         self._dict_products.pop({id, None})
         return f"Продукт с id: {id} удален"
 
