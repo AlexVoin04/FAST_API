@@ -16,33 +16,31 @@ async def get_products(
     ):
     return product_repo.get_all(limit=limit, skip=skip)
 
-@router.get("/product", response_model = List[ProductOut])
+@router.get("/product", response_model = ProductOut)
 async def get_products(
     id :uuid.UUID,
     product_repo :BaseProductRepository = Depends(get_product_repo),
     ):
     return product_repo.get_by_id(id)
 
-@router.post("/product", response_model = List[ProductOut])
+@router.post("/product", response_model = ProductOut)
 async def create_product(
     product_in :ProductIn,
     product_repo :BaseProductRepository = Depends(get_product_repo),
     ):
     return product_repo.create(product_in)
-"""
-@router.put("/product", response_model = List[ProductOut])
-async def put_product(
+
+@router.put("/product", response_model = ProductOut)
+async def update_product(
     id :uuid.UUID,
+    product_in: ProductIn,
     product_repo :BaseProductRepository = Depends(get_product_repo),
     ):
-    product_put = product_repo.get_by_id(id)
-    return product_repo.update(product_put)
+    return product_repo.update(id, product_in)
 
-@router.delete("/product", response_model = List[ProductOut])
+@router.delete("/product", response_model = str)
 async def delete_product(
     id :uuid.UUID,
     product_repo :BaseProductRepository = Depends(get_product_repo),
     ):
-    
-    return product_repo.get_by_id(id)
-"""
+    return product_repo.delete(id)
