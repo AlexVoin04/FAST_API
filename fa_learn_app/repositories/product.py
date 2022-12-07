@@ -70,8 +70,8 @@ class ProductTmpRepository(BaseProductRepository):
     def delete(self, id :uuid.UUID) -> str:
         """Удаление объекта по id"""
         
-        product :ProductStorage = self._dict_products.get(id, None)
+        product :ProductStorage = self._dict_products.get(id)
         if product is None:
             return None
-        self._dict_products.pop({id, None})
+        self._dict_products.pop(id, None)
         return f"Продукт с id: {id} удален"
